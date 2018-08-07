@@ -5,7 +5,7 @@ SLU公用接口程序，为手机钱包、网页钱包等应用提供接口调�
 
 ### 具体调用方法： ###
 
-# Insight API
+# silubium API
 
 ## Tokens
 * [Token Account Balance](#token-account-balance)
@@ -35,11 +35,11 @@ SLU公用接口程序，为手机钱包、网页钱包等应用提供接口调�
 ### Token Account Balance
 
 ```
-  `GET` /insight-api/tokens/{:tokenAddressBase}/addresses/{:addressBase}/balance
+  `GET` /silubium-api/tokens/{:tokenAddressBase}/addresses/{:addressBase}/balance
 ```
 or
 ```
-  `GET` /insight-api/tokens/{:tokenAddressBase}/addresses/{:addressBase}/balance?format=object
+  `GET` /silubium-api/tokens/{:tokenAddressBase}/addresses/{:addressBase}/balance?format=object
 ```
 
 * **Query Params**
@@ -64,11 +64,11 @@ This would return:
 
 ### Token Total supply
 ```
-    `GET` /insight-api/tokens/{:tokenAddressBase}/total-supply
+    `GET` /silubium-api/tokens/{:tokenAddressBase}/total-supply
 ```
 or
 ```
-  `GET` /insight-api/tokens/{:tokenAddressBase}/total-supply?format=object
+  `GET` /silubium-api/tokens/{:tokenAddressBase}/total-supply?format=object
 ```
 
 * **Query Params**
@@ -92,7 +92,7 @@ or
 ### Token Transactions
 
 ```
-  `GET` /insight-api/tokens/{:tokenAddressBase}/transactions
+  `GET` /silubium-api/tokens/{:tokenAddressBase}/transactions
 ```
 
 * **Query Params**
@@ -118,7 +118,7 @@ or
 
 E.g.:
 ```
-  `GET` /insight-api/tokens/QNdW79juyJNJ89h99D9vfo5QhCZpmavJNX/transactions?limit=20&offset=1&from_block=34101&to_block=34378&from_date_time=2017-10-27T01:23:10.000Z&to_date_time=2018-10-27T01:24:10.000Z&addresses[]=QbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG&addresses[]=QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y
+  `GET` /silubium-api/tokens/QNdW79juyJNJ89h99D9vfo5QhCZpmavJNX/transactions?limit=20&offset=1&from_block=34101&to_block=34378&from_date_time=2017-10-27T01:23:10.000Z&to_date_time=2018-10-27T01:24:10.000Z&addresses[]=QbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG&addresses[]=QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y
 ```
 
 This would return:
@@ -153,7 +153,7 @@ This would return:
 
 ### Account Info
 ```
-  `GET` /insight-api/contracts/{:contractHash}/info
+  `GET` /silubium-api/contracts/{:contractHash}/info
 ```
 This would return:
 ```
@@ -183,7 +183,7 @@ This would return:
 
 ### Total 24h Statistic
 ```
-  `GET` /insight-api/statistics/total
+  `GET` /silubium-api/statistics/total
 ```
 This would return:
 ```
@@ -200,7 +200,7 @@ This would return:
 ```
 ### Transactions Statistic
 ```
-  `GET` /insight-api/statistics/transactions?days=14
+  `GET` /silubium-api/statistics/transactions?days=14
 ```
 This would return:
 ```
@@ -216,7 +216,7 @@ This would return:
 
 ### Fees Statistic
 ```
-  `GET` /insight-api/statistics/fees?days=14
+  `GET` /silubium-api/statistics/fees?days=14
 ```
 This would return:
 ```
@@ -230,7 +230,7 @@ This would return:
 ```
 ### Outputs Statistic
 ```
-  `GET` /insight-api/statistics/outputs?days=14
+  `GET` /silubium-api/statistics/outputs?days=14
 ```
 This would return:
 ```
@@ -244,7 +244,7 @@ This would return:
 ```
 ### Difficulty Statistic
 ```
-  `GET` /insight-api/statistics/difficulty?days=14
+  `GET` /silubium-api/statistics/difficulty?days=14
 ```
 This would return:
 ```
@@ -258,7 +258,7 @@ This would return:
 ```
 ### Stake Statistic
 ```
-  `GET` /insight-api/statistics/stake?days=14
+  `GET` /silubium-api/statistics/stake?days=14
 ```
 This would return:
 ```
@@ -274,11 +274,11 @@ This would return:
 ### Total Supply Statistic
 
 ```
-  `GET` /insight-api/circulating-supply
+  `GET` /silubium-api/circulating-supply
 ```
 or
 ```
-  `GET` /insight-api/circulating-supply/?format=object
+  `GET` /silubium-api/circulating-supply/?format=object
 ```
 This would return:
 ```
@@ -293,11 +293,11 @@ or
 
 
 ```
-  `GET` /insight-api/supply
+  `GET` /silubium-api/supply
 ```
 or
 ```
-  `GET` /insight-api/supply?format=object
+  `GET` /silubium-api/supply?format=object
 ```
 This would return:
 ```
@@ -312,15 +312,15 @@ or
 
 ### Block
 ```
-  /insight-api/block/[:hash]
-  /insight-api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
+  /silubium-api/block/[:hash]
+  /silubium-api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
 ```
 
 ### Block Index
 Get block hash by height
 ```
-  /insight-api/block-index/[:height]
-  /insight-api/block-index/0
+  /silubium-api/block-index/[:height]
+  /silubium-api/block-index/0
 ```
 This would return:
 ```
@@ -333,8 +333,8 @@ which is the hash of the Genesis block (0 height)
 
 ### Raw Block
 ```
-  /insight-api/rawblock/[:blockHash]
-  /insight-api/rawblock/[:blockHeight]
+  /silubium-api/rawblock/[:blockHash]
+  /silubium-api/rawblock/[:blockHeight]
 ```
 
 This would return:
@@ -348,7 +348,7 @@ This would return:
 
 Get block summaries by date:
 ```
-  /insight-api/blocks?limit=3&blockDate=2016-04-22
+  /silubium-api/blocks?limit=3&blockDate=2016-04-22
 ```
 
 Example response:
@@ -382,31 +382,31 @@ Example response:
 
 ### Transaction
 ```
-  /insight-api/tx/[:txid]
-  /insight-api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
-  /insight-api/rawtx/[:rawid]
-  /insight-api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /silubium-api/tx/[:txid]
+  /silubium-api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /silubium-api/rawtx/[:rawid]
+  /silubium-api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 ```
 
 ### Address
 ```
-  /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
+  /silubium-api/addr/[:addr][?noTxList=1][&from=&to=]
+  /silubium-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
+  /silubium-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
 ```
 
 ### Address Properties
 ```
-  /insight-api/addr/[:addr]/balance
-  /insight-api/addr/[:addr]/totalReceived
-  /insight-api/addr/[:addr]/totalSent
-  /insight-api/addr/[:addr]/unconfirmedBalance
+  /silubium-api/addr/[:addr]/balance
+  /silubium-api/addr/[:addr]/totalReceived
+  /silubium-api/addr/[:addr]/totalSent
+  /silubium-api/addr/[:addr]/unconfirmedBalance
 ```
 The response contains the value in Satoshis.
 
 ### Unspent Outputs
 ```
-  /insight-api/addr/[:addr]/utxo
+  /silubium-api/addr/[:addr]/utxo
 ```
 Sample return:
 ```
@@ -437,13 +437,13 @@ Sample return:
 ### Unspent Outputs for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/utxo
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
+  /silubium-api/addrs/[:addrs]/utxo
+  /silubium-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
 ```
 
 POST method:
 ```
-  /insight-api/addrs/utxo
+  /silubium-api/addrs/utxo
 ```
 
 POST params:
@@ -453,31 +453,31 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 
 ### Transactions by Block
 ```
-  /insight-api/txs/?block=HASH
-  /insight-api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
+  /silubium-api/txs/?block=HASH
+  /silubium-api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
 ```
 
 ### Transactions by Address
 ```
-  /insight-api/txs/?address=ADDR
-  /insight-api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
+  /silubium-api/txs/?address=ADDR
+  /silubium-api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
 ```
 
 ### Transactions Receipt
 ```
-  /insight-api/txs/[:tx_id]/receipt
+  /silubium-api/txs/[:tx_id]/receipt
 ```
 
 ### Transactions for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
+  /silubium-api/addrs/[:addrs]/txs[?from=&to=]
+  /silubium-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
 ```
 
 POST method:
 ```
-  /insight-api/addrs/txs
+  /silubium-api/addrs/txs
 ```
 
 POST params:
@@ -525,7 +525,7 @@ Note: if pagination params are not specified, the result is an array of transact
 ### Transaction Broadcasting
 POST method:
 ```
-  /insight-api/tx/send
+  /silubium-api/tx/send
 ```
 POST params:
 ```
@@ -551,22 +551,22 @@ POST response:
 
 ### Historic Blockchain Data Sync Status
 ```
-  /insight-api/sync
+  /silubium-api/sync
 ```
 
 ### Live Network P2P Data Sync Status
 ```
-  /insight-api/peer
+  /silubium-api/peer
 ```
 
 ### Status of the SILUBIUM Network
 ```
-  /insight-api/status?q=xxx
+  /silubium-api/status?q=xxx
 ```
 
 ### DGP info
 ```
-  /insight-api/dgpinfo
+  /silubium-api/dgpinfo
 ```
 
 Where "xxx" can be:
@@ -579,12 +579,12 @@ Where "xxx" can be:
 
 ### Utility Methods
 ```
-  /insight-api/utils/estimatefee[?nbBlocks=2]
+  /silubium-api/utils/estimatefee[?nbBlocks=2]
 ```
 
 ### Min Estimate Fee Per KB
 ```
-  /insight-api/utils/minestimatefee[?nbBlocks=2]
+  /silubium-api/utils/minestimatefee[?nbBlocks=2]
 ```
 
 resp:
@@ -597,34 +597,34 @@ resp:
 
 ### SRC20 info
 ```
-  /insight-api/src20/:contractAddress
+  /silubium-api/src20/:contractAddress
   > DEPRECATED
 ```
     
 ```
-  /insight-api/src20/:contractAddress
+  /silubium-api/src20/:contractAddress
 ```
 
 ### SRC20 transfers
 ```
-  /insight-api/src20/:contractAddress/transfers
+  /silubium-api/src20/:contractAddress/transfers
 ```
 
 ### SRC20 balances
 ```
-  /insight-api/src20/:contractAddress/balances
+  /silubium-api/src20/:contractAddress/balances
 ```
 
 ### Call Contract
 ```
-/insight-api/contracts/:contractaddress/hash/:contracthash/call
+/silubium-api/contracts/:contractaddress/hash/:contracthash/call
 ```
 
 ## Web Socket API
 
 The web socket API is served using [socket.io](http://socket.io).
 
-The following are the events published by insight:
+The following are the events published by silubium:
 
 `tx`: new transaction received from network. This event is published in the 'inv' room. Data will be a app/models/Transaction object.
 Sample output:
@@ -665,18 +665,18 @@ Sample output:
 
 ### Example Usage
 
-The following html page connects to the socket.io insight API and listens for new transactions.
+The following html page connects to the socket.io silubium API and listens for new transactions.
 
 html
 ```
 <html>
 <body>
-  <script src="http://<insight-server>:<port>/socket.io/socket.io.js"></script>
+  <script src="http://<silubium-server>:<port>/socket.io/socket.io.js"></script>
   <script>
     eventToListenTo = 'tx'
     room = 'inv'
 
-    var socket = io("http://<insight-server>:<port>/");
+    var socket = io("http://<silubium-server>:<port>/");
     socket.on('connect', function() {
       // Join the room.
       socket.emit('subscribe', room);
