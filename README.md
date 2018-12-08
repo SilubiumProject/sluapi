@@ -1,18 +1,19 @@
 ## "# silubium API"  ##
 
 SLU公用接口程序，为手机钱包、网页钱包等应用提供接口调用。
-网址：https://sluapi.silubium.org:6910
+网址：http://47.107.38.202:6910 
 
 ### 具体调用方法： ###
 
 ## Tokens
+* [ALL Tokens](#all-tokens)
 * [Token Account Balance](#token-account-balance)
-* [Token Total supply](#token-totla-supply)
+* [Token Total supply](#token-total-supply)
 * [Token Transactions](#token-transactions)
+* [Token Transfer](#token-transfer)
 
 ## Table of Contents
-* [Getting Started](#getting-started)
-* [DGP info](#dgpinfo)
+* [Account Info](#account-info)
 * [SRC20 info](#src20-info)
 * [SRC20 transfers](#src20-transfers)
 * [SRC20 balances](#src20-balances)
@@ -26,9 +27,89 @@ SLU公用接口程序，为手机钱包、网页钱包等应用提供接口调�
 * [Stake](#stake-statistic)
 * [Total Supply](#total-supply-statistic)
 
+### Block Transaction
+* [Block Hash](#block-hash)
+* [Block Index](#block-index)
+* [Raw Block](#raw-block)
+* [Block Summaries](#block-summaries)
+* [Transaction](#transaction)
+* [Address](#address)
+* [Address Properties](#address-properties)
+* [Unspent Outputs](#unspent-outputs)
+* [Unspent Outputs for Multiple Addresses](#unspent-outputs-for-multiple-addresses)
+* [Transactions by Block](#transactions-by-block)
+* [Transactions by Address](#transactions-by-address)
+* [Transactions Receipt](#transactions-receipt)
+* [Transactions for Multiple Addresses](#transactions-for-Multiple-Addresses)
+* [Transaction Broadcasting](#Transaction-Broadcasting)
+* [Historic Blockchain Data Sync Status](#Historic-Blockchain-Data-Sync-Status)
+* [Live Network P2P Data Sync Status](#Live-Network-P2P-Data-Sync-Status)
+* [Status of the SILUBIUM Network](#Status-of-the-SILUBIUM-Network)
+* [Estimatefee](#Utility-Methods)
+* [Minestimatefee](#Min-Estimate-Fee-Per-KB)
 
+
+
+---
+凡是返回多条数据的分页参数均为
+
+            `limit=<Number>`
+            
+                > MAX_LIMIT === 100
+            
+            `offset=<Number>`
+---
 
 ## Tokens
+
+### ALL Tokens
+
+```
+  `GET` /silubium-api/tokens
+```
+
+* **SLUuery Params**
+  
+    * **Optional:**
+        
+            `limit=<Number>`
+            
+                > MAX_LIMIT === 100
+            
+            `offset=<Number>`
+            
+            `order=time`
+没有order参数是默认按照持有人数量倒序，有order且值为time是按照时间倒序           
+This would return:
+
+```
+{
+limit: 100,
+offset: 0,
+count: 19,
+items: [
+          {
+          count_holders: 6,
+          tx_hash: "4f349f09851c6e54291d468e95c9a182c30729b0d115810dfadacc8501efb6af",
+          vout_idx: 0,
+          updated_at: "2018-08-13T01:27:05.546Z",
+          block_height: 11682,
+          contract_address: "0973e4b1598b5badf72076cb08727936f41ab40a",
+          contract_address_base: "SLUN9ywygdWW1pcVTtSHnsXTomehRhnduqL9",
+          decimals: "8",
+          name: "WLToken",
+          symbol: "WLT",
+          total_supply: "1000000000000000000",
+          version: "",
+          exception: false,
+          created_at: "2018-08-13T01:27:05.546Z",
+          description: null,
+          tx_date_time: "2018-08-05T03:02:40.000Z",
+          tx_time: 1533438160
+          }
+      ]
+}
+```
 
 ### Token Account Balance
 
@@ -40,7 +121,7 @@ or
   `GET` /silubium-api/tokens/{:tokenAddressBase}/addresses/{:addressBase}/balance?format=object
 ```
 
-* **Query Params**
+* **SLUuery Params**
 
     * **Optional:**
         
@@ -69,7 +150,7 @@ or
   `GET` /silubium-api/tokens/{:tokenAddressBase}/total-supply?format=object
 ```
 
-* **Query Params**
+* **SLUuery Params**
 
     * **Optional:**
         
@@ -93,7 +174,7 @@ or
   `GET` /silubium-api/tokens/{:tokenAddressBase}/transactions
 ```
 
-* **Query Params**
+* **SLUuery Params**
 
     * **Optional:**
         
@@ -116,7 +197,7 @@ or
 
 E.g.:
 ```
-  `GET` /silubium-api/tokens/QNdW79juyJNJ89h99D9vfo5QhCZpmavJNX/transactions?limit=20&offset=1&from_block=34101&to_block=34378&from_date_time=2017-10-27T01:23:10.000Z&to_date_time=2018-10-27T01:24:10.000Z&addresses[]=QbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG&addresses[]=QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y
+  `GET` /silubium-api/tokens/SLUNdW79juyJNJ89h99D9vfo5SLUhCZpmavJNX/transactions?limit=20&offset=1&from_block=34101&to_block=34378&from_date_time=2017-10-27T01:23:10.000Z&to_date_time=2018-10-27T01:24:10.000Z&addresses[]=SLUbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG&addresses[]=SLUarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y
 ```
 
 This would return:
@@ -125,8 +206,8 @@ This would return:
     "limit": 20,
     "offset": 1,
     "addresses": [
-        "QbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG",
-        "QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y"
+        "SLUbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG",
+        "SLUarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y"
     ],
     "from_block": 34101,
     "to_block": 34378,
@@ -135,14 +216,63 @@ This would return:
     "count": 2,
     "items": [
         {
-            "contract_address_base": "QNdW79juyJNJ89h99D9vfo5QhCZpmavJNX",
+            "contract_address_base": "SLUNdW79juyJNJ89h99D9vfo5SLUhCZpmavJNX",
             "block_height": 34377,
             "tx_hash": "e5c16ea5785fed909957100c3721a62f5f5dfe427af1c926ba11e64c3f905fab",
-            "from": "QNvEBPtXwezdJjkUUy2JF6pirGn1vtkaNt",
-            "to": "QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y",
+            "from": "SLUNvEBPtXwezdJjkUUy2JF6pirGn1vtkaNt",
+            "to": "SLUarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y",
             "value": "100000000000",
             "block_date_time": "2017-10-27T12:28:48.000Z"
         }
+    ]
+}
+```
+
+### Token Transfer
+
+```
+  `GET` /silubium-api/tokenTransfer
+```
+
+* **SLUuery Params**
+
+    * **Optional:**
+        
+            `limit=<Number>`
+            
+                > MAX_LIMIT === 100
+            
+            `offset=<Number>`
+            
+            `address=<Array.<String>>`
+
+            `contractAddress=<String>`
+
+
+E.g.:
+```
+  `GET` /silubium-api/tokenTransfer?limit=20&offset=1&contractAddress=894ef9231afccd6a8990065fe63a5d10c1b9477e&address[]=SLUZt8DT8u2JTyA8y37kKLWW79UfTFj7NXFS&address[]=SLUZt8DT8u2JTSD8y37kKLWW79UfTFj7NXFS
+```
+
+This would return:
+```
+{
+limit: 100,
+offset: 0,
+count: 5,
+items: [
+          {
+          contract_address: "894ef9231afccd6a8990065fe63a5d10c1b9477e",
+          tx_hash: "b742370ad99f00c166938ae25bf47f24455f54cb56a9e34ca0b8a19ac71e20d7",
+          tx_time: 1533883536,
+          from: "SLUa1q4eirBGuhqguea6d1KKvLeeStMZL7d7",
+          from_eth: "8b8aa883da15e5214db0ab48608eb91a5ed18ab5",
+          to: "SLUgBcEb7YcjGqCvuyD6FCFkh1wL42v3Whto",
+          to_eth: "cf34dd1f3248a639761b9b03ccbed8fb6209d90e",
+          value: "5000000000",
+          decimals: "8",
+          symbol: "EES"
+          }
     ]
 }
 ```
@@ -272,11 +402,11 @@ This would return:
 ### Total Supply Statistic
 
 ```
-  `GET` /silubium-api/circulating-supply
+  `GET` /silubium-api/statistics/circulating-supply
 ```
 or
 ```
-  `GET` /silubium-api/circulating-supply/?format=object
+  `GET` /silubium-api/statistics/circulating-supply/?format=object
 ```
 This would return:
 ```
@@ -291,11 +421,11 @@ or
 
 
 ```
-  `GET` /silubium-api/supply
+  `GET` /silubium-api/statistics/supply
 ```
 or
 ```
-  `GET` /silubium-api/supply?format=object
+  `GET` /silubium-api/statistics/supply?format=object
 ```
 This would return:
 ```
@@ -307,11 +437,38 @@ or
     "supply": "100091264"
 }
 ```
+## Block
 
-### Block
+### Block Hash
 ```
   /silubium-api/block/[:hash]
   /silubium-api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
+```
+This would return:
+```
+{
+    hash: "9f4157e6359e614b35b764606ae5ca9c48d9e6b1456a4e6950a5d58b46ecd764",
+    size: 756,
+    height: 24707,
+    version: 536870912,
+    merkleroot: "aa122c20ef9dff69124a544358faf9dd5d47837588fe787a8a57c098dc7760c7",
+    tx: [
+    "b9fd02c5a457350d377d764d5ccb4481298683d5f26d99847e7d5668ea92a125",
+    "e9aa8c6731df2b739c5fc269735cd7a066e2d684dcdae02a2a14e9bca91fe3e5"
+    ],
+    time: 1535333040,
+    nonce: 0,
+    bits: "1a01d845",
+    difficulty: 9094174.99077757,
+    chainwork: "000000000000000000000000000000000000000000000027b46396404b6989fa",
+    confirmations: 1,
+    previousblockhash: "d122f8479a37b993405aafbf7bb4d9672a5d0b7302e8ba538a80e758b563a879",
+    flags: "proof-of-stake",
+    reward: 1,
+    isMainChain: true,
+    minedBy: "SLUfuqUBeWQeVgjknL68xe8jx3oKK8LEucYQ",
+    poolInfo: { }
+}
 ```
 
 ### Block Index
@@ -389,8 +546,8 @@ Example response:
 ### Address
 ```
   /silubium-api/addr/[:addr][?noTxList=1][&from=&to=]
-  /silubium-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
-  /silubium-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
+  /silubium-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfSLU2vmx5?noTxList=1
+  /silubium-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfSLU2vmx5?from=1000&to=2000
 ```
 
 ### Address Properties
@@ -410,7 +567,7 @@ Sample return:
 ```
 [
   {
-    "address":"mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
+    "address":"mo9ncXisMeAoXwqcV5EWuyncbmCcSLUN4rVs",
     "txid":"d5f8a96faccf79d4c087fa217627bb1120e83f8ea1a7d84b1de4277ead9bbac1",
     "vout":0,
     "scriptPubKey":"76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
@@ -420,7 +577,7 @@ Sample return:
     "ts":1461349425
   },
   {
-    "address": "mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
+    "address": "mo9ncXisMeAoXwqcV5EWuyncbmCcSLUN4rVs",
     "txid": "bc9df3b92120feaee4edc80963d8ed59d6a78ea0defef3ec3cb374f2015bfc6e",
     "vout": 1,
     "scriptPubKey": "76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
@@ -436,7 +593,7 @@ Sample return:
 GET method:
 ```
   /silubium-api/addrs/[:addrs]/utxo
-  /silubium-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
+  /silubium-api/addrs/2NF2baYuJAkCKo5onjUKEPdARSLUkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97SLUhn97tB1f/utxo
 ```
 
 POST method:
@@ -446,7 +603,7 @@ POST method:
 
 POST params:
 ```
-addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
+addrs: 2NF2baYuJAkCKo5onjUKEPdARSLUkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97SLUhn97tB1f
 ```
 
 ### Transactions by Block
@@ -470,7 +627,7 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 GET method:
 ```
   /silubium-api/addrs/[:addrs]/txs[?from=&to=]
-  /silubium-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
+  /silubium-api/addrs/2NF2baYuJAkCKo5onjUKEPdARSLUkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97SLUhn97tB1f/txs?from=0&to=20
 ```
 
 POST method:
@@ -480,7 +637,7 @@ POST method:
 
 POST params:
 ```
-addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
+addrs: 2NF2baYuJAkCKo5onjUKEPdARSLUkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97SLUhn97tB1f
 from (optional): 0
 to (optional): 20
 noAsm (optional): 1 (will omit script asm from results)
@@ -561,12 +718,6 @@ POST response:
 ```
   /silubium-api/status?q=xxx
 ```
-
-### DGP info
-```
-  /silubium-api/dgpinfo
-```
-
 Where "xxx" can be:
 
  * getInfo
@@ -594,18 +745,78 @@ resp:
 ```
 
 ### SRC20 info
+   
 ```
   /silubium-api/src20/:contractAddress
-  > DEPRECATED
 ```
-    
+
+E.g.:
 ```
-  /silubium-api/src20/:contractAddress
+  `GET` /silubium-api/src20/0973e4b1598b5badf72076cb08727936f41ab40a
+```
+
+This would return:
+```
+{
+  contract_address: "0973e4b1598b5badf72076cb08727936f41ab40a",
+  total_supply: "1000000000000000000",
+  decimals: "8",
+  name: "WLToken",
+  symbol: "WLT",
+  version: "",
+  transfers_count: 0,
+  holders_count: 0,
+  tx_hash: "4f349f09851c6e54291d468e95c9a182c30729b0d115810dfadacc8501efb6af",
+  updated_at: "2018-08-13T01:27:05.546Z",
+  block_height: 11682,
+  contract_address_base: "SLUN9ywygdWW1pcVTtSHnsXTomehRhnduqL9",
+  exception: false,
+  created_at: "2018-08-13T01:27:05.546Z",
+  tx_date_time: "2018-08-05T03:02:40.000Z",
+  tx_time: 1533438160
+}
 ```
 
 ### SRC20 transfers
 ```
   /silubium-api/src20/:contractAddress/transfers
+```
+* **SLUuery Params**
+
+    * **Optional:**
+        
+            `limit=<Number>`
+            
+                > MAX_LIMIT === 100
+            
+            `offset=<Number>`
+            
+            `addresses=<Array.<String>>`
+
+E.g.:
+```
+  `GET` /silubium-api/src20/0973e4b1598b5badf72076cb08727936f41ab40a/transfers?limit=20&offset=1&addresses[]=SLUZt8DT8u2JTyA8y37kKLWW79UfTFj7NXFS&addresses[]=SLUZt8DT8u2JTSD8y37kKLWW79UfTFj7NXFS
+```
+
+This would return:
+```
+{
+limit: 100,
+offset: 0,
+count: 5,
+items: [
+          {
+            contract_address: "0973e4b1598b5badf72076cb08727936f41ab40a",
+            tx_hash: "9e3ff1f8062a22733c19954b3454ab28a47cdd6ba8bf315cc859ae6a3d454230",
+            tx_time: 1535003776,
+            from: "SLURN3UeTqRfrFrtS8NtXZgmZYqDLYPzfiC6",
+            from_eth: "2ca435386a712b12c3e833e13c734bc946d77c4a",
+            to: "SLUUnwhpqDSsAQknqWxENLEtv89kg9WJazaV",
+            to_eth: "52422a58960b3e427ed957aa5cf8ed006db069d5",
+            value: "1000000000"
+          }
+    ]
+}
 ```
 
 ### SRC20 balances
@@ -708,5 +919,4 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 
