@@ -1,0 +1,29 @@
+{
+  "name": "silubiumjs-lib",
+  "version": "0.0.7",
+  "description": "An extend lib for bitcoinjs-lib, it supports two new network of silubium and silubium-testnet, and it can generate contract creating and sending transactions",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+http://172.16.0.99/szc/silubiumjs-lib.git"
+  },
+  "keywords": [
+    "silubium",
+    "silubiumjs",
+    "smart contract",
+    "bitcoin"
+  ],
+  "author": "Silubiumjs Weiyu",
+  "license": "MIT",
+  "bugs": {
+    "url": "http://172.16.0.99/szc/silubiumjs-lib/issues"
+  },
+  "homepage": "http://172.16.0.99/szc/silubiumjs-lib#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "bignumber.js": "^4.1.0",
+    "bitcoinjs-lib": "git+http://172.16.0.99/szc/bitcoinjs-lib.git",
+    "silubium-opcodes": "git+http://172.16.0.99/szc/silubium-opcodes-js.git",
+    "safe-buffer": "^5.1.1"
+  }
+}
