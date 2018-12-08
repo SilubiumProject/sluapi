@@ -12,7 +12,7 @@ Db.prototype.connect = function (cb) {
     var self = this,
         configDB = this.config,
         userUrl = (configDB['user']) ? (configDB['user'] + ':' + configDB['password'] + '@') : '',
-        url = 'mongodb://silubium:Deaking2018Silktrader@dds-wz9b2e22c49fcd441.mongodb.rds.aliyuncs.com:3717,dds-wz9b2e22c49fcd442.mongodb.rds.aliyuncs.com:3717/silubium-livenet?replicaSet=mgset-9181407';
+         url = 'mongodb://' + userUrl + configDB['host'] + ':' + configDB['port'] + '/' + configDB['database'];
 
     return mongoose.connect(url, { useMongoClient: true }, function (err) {
 
