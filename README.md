@@ -121,7 +121,7 @@ or
   `GET` /silubium-api/tokens/{:tokenAddressBase}/addresses/{:addressBase}/balance?format=object
 ```
 
-* **SLUuery Params**
+* **SLUquery Params**
 
     * **Optional:**
         
@@ -150,7 +150,7 @@ or
   `GET` /silubium-api/tokens/{:tokenAddressBase}/total-supply?format=object
 ```
 
-* **SLUuery Params**
+* **SLUquery Params**
 
     * **Optional:**
         
@@ -174,7 +174,7 @@ or
   `GET` /silubium-api/tokens/{:tokenAddressBase}/transactions
 ```
 
-* **SLUuery Params**
+* **SLUquery Params**
 
     * **Optional:**
         
@@ -234,7 +234,7 @@ This would return:
   `GET` /silubium-api/tokenTransfer
 ```
 
-* **SLUuery Params**
+* **SLUquery Params**
 
     * **Optional:**
         
@@ -247,6 +247,8 @@ This would return:
             `address=<Array.<String>>`
 
             `contractAddress=<String>`
+            
+            `txHash=<String>`
 
 
 E.g.:
@@ -781,7 +783,7 @@ This would return:
 ```
   /silubium-api/src20/:contractAddress/transfers
 ```
-* **SLUuery Params**
+* **SLUquery Params**
 
     * **Optional:**
         
