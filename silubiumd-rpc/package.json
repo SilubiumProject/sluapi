@@ -1,0 +1,35 @@
+{
+  "name": "silubiumd-rpc",
+  "description": "SILUBIUM Client Library to connect to SILUBIUM Core via RPC",
+  "version": "0.0.4",
+  "author": {},
+  "contributors": [],
+  "keywords": [
+    "silubium",
+    "rpc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+http://172.16.0.99/szc/silubiumd-rpc.git"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha test -R spec",
+    "coverage": "istanbul cover node_modules/.bin/_mocha -- --recursive"
+  },
+  "devDependencies": {
+    "async": "^0.9.0",
+    "chai": "^1.10.0",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.5",
+    "mocha": "^2.1.0",
+    "sinon": "^1.12.2"
+  },
+  "bugs": {
+    "url": "http://172.16.0.99/szc/silubiumd-rpc/issues"
+  },
+  "homepage": "http://172.16.0.99/szc/silubiumd-rpc",
+  "directories": {},
+  "readme": "ERROR: No README data found!"
+}
