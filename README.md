@@ -1,7 +1,7 @@
 ## "# silubium API"  ##
 
 SLU公用接口程序，为手机钱包、网页钱包等应用提供接口调用。
-网址：https://sluapi2.silubium.org （原 http://47.107.38.202:6910 已弃用）
+网址：https://sluapi.silubium.org
 
 ### 具体调用方法： ###
 
